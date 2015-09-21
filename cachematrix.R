@@ -1,7 +1,8 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+## Function makeCacheMatrix creates a "matrix cache manager": an object which 
+## contains a set of fuctions to inverse matrixes 
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -15,11 +16,11 @@ makeCacheMatrix <- function(x = matrix()) {
     x
   }
   
-  setinverse(inverse){
+  setinverse<-function(inverse){
     inv<<-inverse
   }
   
-  getinverse(){
+  getinverse<-function(){
     inv
   }
   
@@ -30,9 +31,21 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Function returns the inverse value of squared matrix
+## 
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+  i<-x$getinverse()
+  if(!is.null(i)){
+    message("Inversed matrix is found in cache. ")
+    return(i)
+  }
+  
+  data<-x$get()
+  i<-solve(data, ...)
+  
+  x$setinverse(i)
+  i
 }
 
